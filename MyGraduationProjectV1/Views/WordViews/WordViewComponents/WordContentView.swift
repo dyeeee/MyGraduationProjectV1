@@ -17,7 +17,7 @@ struct WordContentView: View {
                 .fontWeight(.bold)
                 .foregroundColor(.clear)
                 .overlay(Rectangle().frame(height:4)
-                            .foregroundColor(Color.blue.opacity(0.8))
+                            .foregroundColor(Color(.systemBlue))
                             .offset(x:0,y:12))
         }.overlay(
             Text(self.wordContent )

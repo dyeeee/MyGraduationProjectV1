@@ -51,7 +51,7 @@ class WordItemController: ObservableObject{
         let container = PersistenceController.shared.container
         let csvTool = CSVTools()
         
-        var data = csvTool.readDataFromCSV(fileName: "Common_Wrods_1Sentence_Small", fileType: "csv")
+        var data = csvTool.readDataFromCSV(fileName: "Common_Wrods_Small", fileType: "csv")
         data = csvTool.cleanRows(file: data ?? "d")
         let csvRows = csvTool.csv(data: data ?? "d")
         

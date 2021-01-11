@@ -30,10 +30,10 @@ struct WordTagsView: View {
     
     func isFrqsEmpty(bnc:Int,frq:Int,ox:Int,co:Int) -> Bool {
         if (bnc != 0 || frq != 0 || ox != 0 || co != 0) {
-            return true
+            return false
         }
         else{
-            return false
+            return true
         }
     }
     
@@ -51,7 +51,7 @@ struct WordTagsView: View {
             frqString.append("BNC-\(String(bnc)) ")
         }
         if frq != 0 {
-            frqString.append("COCA-\(String(frq))")
+            frqString.append("COCA-\(String(frq)) ")
         }
         frqString.removeLast()
         let frqsList = frqString.components(separatedBy: " ")
@@ -90,7 +90,7 @@ struct WordTagsView: View {
                 }
                 
             }
-            if (isFrqsEmpty(bnc: self.bncLevel, frq: self.frqLevel, ox: self.oxfordLevel, co: self.collinsLevel)) {
+            if (!isFrqsEmpty(bnc: self.bncLevel, frq: self.frqLevel, ox: self.oxfordLevel, co: self.collinsLevel)) {
                 
                 Menu{
                     VStack{
@@ -128,7 +128,7 @@ struct WordTagsView: View {
         }.sheet(isPresented: $showHelp, content: {
             FrqDetailIntroView()
         })
-        .padding(5)
+        .padding([.top,.bottom],5)
         
     }
 }
