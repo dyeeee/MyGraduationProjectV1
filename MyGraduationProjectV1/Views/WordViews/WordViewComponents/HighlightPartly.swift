@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HighlightPartlyView: View {
-    @State var fullString: String = "Excuse me what eyedrop can be treated or to what eyedrop can be treated or alleviate myopic eyedrop ah?"
-    @State var wordContent:String = "alleviate"
+    @State var fullString: String = "She was also taken aback by his intense jealousy and the imbalance between his tight penny-pinching and extravagant spending."
+    @State var wordContent:String = "aback"
     
     var body: some View{
         //let testo : String = "There is a thunderstorm in the area"

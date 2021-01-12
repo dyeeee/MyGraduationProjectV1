@@ -29,7 +29,7 @@ extension WordItem {
     @NSManaged public var collinsLevel: Int16
     @NSManaged public var oxfordLevel: Int16
     @NSManaged public var exampleSentences: String?
-    @NSManaged public var otherAttr1: String?
+    @NSManaged public var wordNote: String?
     @NSManaged public var otherAttr2: String?
     @NSManaged public var otherAttr3: Int16
     @NSManaged public var starLevel: Int16

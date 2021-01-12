@@ -22,9 +22,11 @@ struct WordExchangesView: View {
         exString =  exString.replacingOccurrences(of: "0:", with: "词缀(lemma):")
         exString = exString.replacingOccurrences(of: "1:", with: "词缀的复数形式(lemma):")
         
+        exString =  exString.replacingOccurrences(of: "s:", with: "复数:")
+        
         let exList = exString.components(separatedBy: "/")
-        var exListList:[[String]] = [exList[0].components(separatedBy: ":")]
-        for ex in exList[1...exList.count-1] {
+        var exListList:[[String]] = []//[exList[0].components(separatedBy: ":")]
+        for ex in exList[0...exList.count-1] {
             exListList.append(ex.components(separatedBy: ":"))
         }
         return exListList
@@ -56,7 +58,7 @@ struct WordExchangesView: View {
                     }
                 }
             }
-        }        .padding(.bottom, 10)
+        }        .padding(.bottom, 5)
         .padding(.top, 5)
     }
 }

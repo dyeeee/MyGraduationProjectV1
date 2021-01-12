@@ -25,6 +25,8 @@
 		D090AEA125AC740F00663FA1 /* WordExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090AEA025AC740F00663FA1 /* WordExchangesView.swift */; };
 		D090AEA425AC8FA200663FA1 /* WordExampleSentencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090AEA325AC8FA200663FA1 /* WordExampleSentencesView.swift */; };
 		D090AEA725ACA5BE00663FA1 /* HighlightPartly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090AEA625ACA5BE00663FA1 /* HighlightPartly.swift */; };
+		D090AEAB25AD8B8D00663FA1 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090AEAA25AD8B8D00663FA1 /* HideKeyboard.swift */; };
+		D090AEAE25AD92C600663FA1 /* TextEditorAutoUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090AEAD25AD92C600663FA1 /* TextEditorAutoUp.swift */; };
 		D09DE1C9259C28AF006DAB60 /* MyProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09DE1C8259C28AF006DAB60 /* MyProgressView.swift */; };
 		D09DE1D1259C84D4006DAB60 /* ProgressTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09DE1D0259C84D4006DAB60 /* ProgressTestView.swift */; };
 		D09DE1D5259CA592006DAB60 /* ProgressBarViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09DE1D4259CA592006DAB60 /* ProgressBarViews.swift */; };
@@ -56,6 +58,8 @@
 		D090AEA025AC740F00663FA1 /* WordExchangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordExchangesView.swift; sourceTree = "<group>"; };
 		D090AEA325AC8FA200663FA1 /* WordExampleSentencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordExampleSentencesView.swift; sourceTree = "<group>"; };
 		D090AEA625ACA5BE00663FA1 /* HighlightPartly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightPartly.swift; sourceTree = "<group>"; };
+		D090AEAA25AD8B8D00663FA1 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
+		D090AEAD25AD92C600663FA1 /* TextEditorAutoUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorAutoUp.swift; sourceTree = "<group>"; };
 		D09DE1C8259C28AF006DAB60 /* MyProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProgressView.swift; sourceTree = "<group>"; };
 		D09DE1D0259C84D4006DAB60 /* ProgressTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTestView.swift; sourceTree = "<group>"; };
 		D09DE1D4259CA592006DAB60 /* ProgressBarViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarViews.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				D04B706025AAF662004B644D /* CSVTools.swift */,
 				D04B706325AAF668004B644D /* RegexTools.swift */,
 				D04B706625AAF66D004B644D /* SelectableText.swift */,
+				D090AEAA25AD8B8D00663FA1 /* HideKeyboard.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 			children = (
 				D04B707C25AB2C03004B644D /* StarLevelView.swift */,
 				D09DE1D0259C84D4006DAB60 /* ProgressTestView.swift */,
+				D090AEAD25AD92C600663FA1 /* TextEditorAutoUp.swift */,
 			);
 			path = TestFiles;
 			sourceTree = "<group>";
@@ -275,8 +281,10 @@
 				D09DE1D5259CA592006DAB60 /* ProgressBarViews.swift in Sources */,
 				D04B705D25AAF5FE004B644D /* WordItem+CoreDataProperties.swift in Sources */,
 				D04B705C25AAF5FE004B644D /* WordItem+CoreDataClass.swift in Sources */,
+				D090AEAB25AD8B8D00663FA1 /* HideKeyboard.swift in Sources */,
 				D04B707D25AB2C03004B644D /* StarLevelView.swift in Sources */,
 				D0AD9EAA2598B2FB00148404 /* Persistence.swift in Sources */,
+				D090AEAE25AD92C600663FA1 /* TextEditorAutoUp.swift in Sources */,
 				D04B707A25AB0EFA004B644D /* WordTagsView.swift in Sources */,
 				D04B706A25AAF769004B644D /* WordDetailView.swift in Sources */,
 				D090AEA425AC8FA200663FA1 /* WordExampleSentencesView.swift in Sources */,

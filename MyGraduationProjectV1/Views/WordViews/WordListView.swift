@@ -19,27 +19,37 @@ struct WordListView: View {
     var body: some View {
         NavigationView{
             List{
-                Section(header: Text("header"), footer: Text("footer")){
+                Section(){
                     HStack {
                         TextField("Search", text: $searchText)
-                        Button(action: {}, label: {
+                            .onChange(of: searchText, perform: { value in
+                                self.wordItemController.searchItems(begins: self.searchText)
+                            })
+                        Button(action: {
+                            self.wordItemController.searchItems(begins: self.searchText)
+                        }, label: {
                             Image(systemName:"magnifyingglass")
                         })
                     }
                 }
                 
-                Section(header: Text("header"), footer: Text("footer")) {
-                    ForEach(self.wordItemController.itemList){
+                Section(header: Text("Result")) {
+                    ForEach(self.wordItemController.itemList,id:\.self){
                         item in
                         NavigationLink(
-                            destination: WordDetailView(wordItem:item,wordItemController:wordItemController)){
+                            destination: WordDetailView(wordItem:item,wordItemController:wordItemController,wordNote: item.wordNote ?? "nullTag")){
                         VStack(alignment:.leading){
                             Text(item.wordContent ?? "noContent")
                                 .font(.title3)
-                            Text(item.translation?.replacingOccurrences(of: "\\n", with: "; ") ?? "noTranslation")
+                            
+                            Text(self.dealTrans(item.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .lineLimit(1)
+//                            Text(item.translation?.replacingOccurrences(of: "\\n", with: "; ") ?? "noTranslation")
+//                                .font(.subheadline)
+//                                .foregroundColor(.gray)
+//                                .lineLimit(1)
                                 
                         }}
                     }
@@ -77,6 +87,29 @@ struct WordListView: View {
             }
             
         }
+    }
+    
+    func dealTrans(_ rawTrans:String) -> String {
+        let pattern1 = "^(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
+        let regex1 = try! Regex(pattern1)
+         
+        //只替换第1个匹配项
+        let out1 = regex1.replacingMatches(in: rawTrans, with: "[$1.] ", count: 1)
+        
+        
+        
+        let pattern2 = "n(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
+        let regex2 = try! Regex(pattern2)
+        //替换所有匹配项
+        let out2 = regex2.replacingMatches(in: out1, with: "n[$1.] ")
+           
+//        //输出结果
+//        print("原始的字符串：", rawTrans)
+//        print("替换第1个匹配项：", out1)
+//        print("替换所有匹配项：", out2)
+        
+        let result = out2.replacingOccurrences(of: "\\n", with: "\n")
+        return result
     }
 }
 

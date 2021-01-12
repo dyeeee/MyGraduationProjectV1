@@ -12,6 +12,7 @@ import SwiftUI
 //目前ListViewModel一样，等跨数据需要跨多个页面的时候看怎么处理
 class WordItemController: ObservableObject{
     @Published var itemList:[WordItem] = []
+    @Published var searchResult:[WordItem] = []
     
     init() {
         getAllItems()
@@ -20,6 +21,7 @@ class WordItemController: ObservableObject{
     func getAllItems() {
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
         let sort = NSSortDescriptor(key: "wordContent", ascending: true)
+        
         
         fetchRequest.fetchLimit = 200
         //fetchRequest.predicate = pre
@@ -34,6 +36,29 @@ class WordItemController: ObservableObject{
         }
     }
     
+    //查询
+    func searchItems(begins:String) {
+        let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
+        
+        //WordItem.fetchRequest() 就是 NSFetchRequest<WordItem>(entityName: "WordItem"）
+        let pre =  NSPredicate(format: "wordContent BEGINSWITH[c] %@", "\(begins)")
+        let sort = NSSortDescriptor(key: "wordContent", ascending: true)
+        
+        fetchRequest.predicate = pre
+        fetchRequest.fetchLimit = 20
+        fetchRequest.sortDescriptors = [sort]
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+
+        do {
+            searchResult = try viewContext.fetch(fetchRequest)
+             
+        } catch {
+            NSLog("Error fetching tasks: \(error)")
+
+        }
+    }
+    
     func createTestItem() {
         let container = PersistenceController.shared.container
         let viewContext = container.viewContext
@@ -44,7 +69,7 @@ class WordItemController: ObservableObject{
             wordItem.translation = "测试样例-\(i)"
         }
         
-        saveToPersistentStore()
+        saveToPersistentStoreAndRefresh()
     }
     
     func preloadFromCSV() {
@@ -56,15 +81,8 @@ class WordItemController: ObservableObject{
         let csvRows = csvTool.csv(data: data ?? "d")
         
         container.performBackgroundTask() { (context) in
-            for i in 0 ..< (csvRows.count - 1) {
+            for i in 1 ..< (csvRows.count - 1) {  //有标题就从1开始
                 let word = WordItem(context: context)
-//                word.wordContent = csvRows[i][1]
-//                word.phonetic = csvRows[i][2]
-//                word.definition = csvRows[i][3]
-//                word.translation = csvRows[i][4]
-//                word.tag = csvRows[i][5]
-//                word.exchanges = csvRows[i][6]
-//                word.exampleSentences = csvRows[i][11]
                 word.wordContent = csvRows[i][1]
                 word.phonetic_EN = csvRows[i][2]
                 word.phonetic_US = csvRows[i][3]
@@ -77,6 +95,7 @@ class WordItemController: ObservableObject{
                 word.collinsLevel = Int16(csvRows[i][10]) ?? 0
                 word.oxfordLevel = Int16(csvRows[i][11]) ?? 0
                 word.exampleSentences = csvRows[i][12]
+                word.wordNote = ""
 
             }
             do {
@@ -103,7 +122,7 @@ class WordItemController: ObservableObject{
         let delAllRequest = NSBatchDeleteRequest(fetchRequest: allItems)
          do {
             try viewContext.execute(delAllRequest)
-            print("删除了全部")
+            print("删除全部数据")
             saveToPersistentStore()
          }
          catch { print(error) }
@@ -117,6 +136,18 @@ class WordItemController: ObservableObject{
     
     //保存
     func saveToPersistentStore() {
+        let viewContext = PersistenceController.shared.container.viewContext
+        do {
+            try viewContext.save()
+            //getAllItems()
+            print("完成保存")
+        } catch {
+            NSLog("Error saving managed object context: \(error)")
+        }
+    }
+    
+    //保存并刷新列表
+    func saveToPersistentStoreAndRefresh() {
         let viewContext = PersistenceController.shared.container.viewContext
         do {
             try viewContext.save()

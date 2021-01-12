@@ -9,7 +9,6 @@
         <attribute name="definition" optional="YES" attributeType="String"/>
         <attribute name="exampleSentences" optional="YES" attributeType="String"/>
         <attribute name="frqLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="otherAttr1" optional="YES" attributeType="String"/>
         <attribute name="otherAttr2" optional="YES" attributeType="String"/>
         <attribute name="otherAttr3" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="oxfordLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -20,10 +19,11 @@
         <attribute name="wordContent" optional="YES" attributeType="String"/>
         <attribute name="wordExchanges" optional="YES" attributeType="String"/>
         <attribute name="wordID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="wordNote" optional="YES" attributeType="String"/>
         <attribute name="wordTags" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="108" width="128" height="44"/>
-        <element name="WordItem" positionX="-63" positionY="-18" width="128" height="284"/>
+        <element name="Item" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WordItem" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

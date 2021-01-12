@@ -13,15 +13,15 @@ struct WordContentView: View {
     var body: some View {
         VStack {
             Text(self.wordContent )
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.clear)
                 .overlay(Rectangle().frame(height:4)
                             .foregroundColor(Color(.systemBlue))
-                            .offset(x:0,y:12))
+                            .offset(x:0,y:10))
         }.overlay(
             Text(self.wordContent )
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
         )

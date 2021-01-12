@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeTabView: View {
-    @State var selectedTab: TabSelection = .page3
+    @State var selectedTab: TabSelection = .page4
     @ObservedObject var wordItemController = WordItemController()
     
     var body: some View {
@@ -41,7 +41,7 @@ struct HomeTabView: View {
                 }
                 .tag(TabSelection.page4)
             
-            ProgressBarViews()
+            TextEditorAutoUp()
                 .tabItem {
                     Image(systemName: "gearshape.2.fill")
                     Text("Setting")

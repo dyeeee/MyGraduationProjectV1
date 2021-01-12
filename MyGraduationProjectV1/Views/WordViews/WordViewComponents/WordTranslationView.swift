@@ -14,7 +14,7 @@ struct WordTranslationView: View {
     
     
     func dealTrans(_ rawTrans:String) -> String {
-        let pattern1 = "^(vt|n|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
+        let pattern1 = "^(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
         let regex1 = try! Regex(pattern1)
          
         //只替换第1个匹配项
@@ -22,7 +22,7 @@ struct WordTranslationView: View {
         
         
         
-        let pattern2 = "n(vt|n|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
+        let pattern2 = "n(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"
         let regex2 = try! Regex(pattern2)
         //替换所有匹配项
         let out2 = regex2.replacingMatches(in: out1, with: "n[$1.] ")
