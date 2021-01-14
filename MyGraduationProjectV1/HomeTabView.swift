@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeTabView: View {
     @State var selectedTab: TabSelection = .page4
-    @ObservedObject var wordItemController = WordItemController()
+    @ObservedObject var wordListViewModel = WordListViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab){
@@ -27,21 +27,21 @@ struct HomeTabView: View {
                 }
                 .tag(TabSelection.page2)
             
-            Text("Note")
+            NotebookListView(wordListViewModel: wordListViewModel)
                 .tabItem {
                     Image(systemName: "book.fill")
                     Text("Note")
                 }
                 .tag(TabSelection.page3)
             
-            WordListView(wordItemController: wordItemController)
+            WordSearchView(wordListViewModel: wordListViewModel)
                 .tabItem {
                     Image(systemName: "character.book.closed.fill")
                     Text("Dictionary")
                 }
                 .tag(TabSelection.page4)
             
-            TextEditorAutoUp()
+            ShowAllWordsView(wordListViewModel: wordListViewModel)
                 .tabItem {
                     Image(systemName: "gearshape.2.fill")
                     Text("Setting")

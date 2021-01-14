@@ -15,7 +15,7 @@ import MobileCoreServices
 //List页面用一个model，
 struct WordDetailView: View {
     @ObservedObject var wordItem:WordItem
-    @ObservedObject var wordItemController: WordItemController
+    @ObservedObject var wordListViewModel: WordListViewModel
     @State var wordNote:String = ""
     
     @State var showNotePlaceholder = true
@@ -49,11 +49,13 @@ struct WordDetailView: View {
                         
                         Button(action: {
                             if(wordItem.starLevel>0) {
+                                // 本来>0的，点击后取消
                                 wordItem.starLevel = 0
-                                wordItemController.saveToPersistentStore()
+                                wordListViewModel.saveToPersistentStoreAndRefresh(.notebook)
                             }else{
+                                // 本来=0的，点击后星级至少为1
                                 wordItem.starLevel = 1
-                                wordItemController.saveToPersistentStore()
+                                wordListViewModel.saveToPersistentStoreAndRefresh(.notebook)
                             }
                         }, label: {
                             Image(systemName: wordItem.starLevel>0 ? "bookmark.fill":"bookmark")
@@ -65,15 +67,16 @@ struct WordDetailView: View {
                         //Text("StarLevel "+String(wordItem.starLevel))
                         //                        StarLevelView(starLevel:Int(wordItem.starLevel))
                         if(wordItem.starLevel>0) {
-                            HStack(spacing:0) {
+                            HStack(spacing:-2) {
                                 ForEach(1..<5 + 1) {
                                     number in
                                     Image(systemName: "star.fill")
                                         .font(.body)
                                         .foregroundColor(number > wordItem.starLevel ? Color.gray : Color("StarColor"))
                                         .onTapGesture {
+                                            //每次单击都调整星级
                                             wordItem.starLevel = Int16(number)
-                                            wordItemController.saveToPersistentStore()
+                                            wordListViewModel.saveToPersistentStoreAndRefresh(.notebook)
                                         }
                                     
                                 }
@@ -191,7 +194,7 @@ struct WordDetailView: View {
                                         Button(action: {
                                             self.hideKeyboard()
                                             wordItem.wordNote = self.wordNote
-                                            self.wordItemController.saveToPersistentStore()
+                                            self.wordListViewModel.saveToPersistentStore()
                                             self.showNoteSaveButton = false
                                         }, label: {
                                             VStack {
@@ -232,7 +235,7 @@ struct WordDetailView: View {
                                 self.showNotePlaceholder = false
                                 self.showNoteSaveButton = true
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-                                    reader.scrollTo("noteSection")
+                                    //reader.scrollTo("noteSection")
                                     withAnimation {
                                         reader.scrollTo("noteSection")
                                     }
@@ -246,23 +249,60 @@ struct WordDetailView: View {
                 
             }
             .listStyle(InsetGroupedListStyle())
-            .toolbar(content: {
-                ToolbarItem(placement: .bottomBar) {
-                    Image(systemName: "star.fill")
-                }
-                ToolbarItem(placement: .bottomBar) {
-                    Image(systemName: "eyes.inverse")
-                }
-                ToolbarItem(placement: .bottomBar) {
-                    Button(action: {
-                        wordItem.wordContent = "test"
-                        wordItem.wordNote = "1"
-                        wordItemController.saveToPersistentStore()
-                    }, label: {
-                        Text("test")
-                    })
-                }
-            })
+//            .toolbar(content: {
+//                ToolbarItem(placement: .bottomBar) {
+//                    HStack {
+//                        Button(action: {
+//                            if(wordItem.starLevel>0) {
+//                                // 本来>0的，点击后取消
+//                                wordItem.starLevel = 0
+//                                wordListViewModel.saveToPersistentStoreAndRefresh(.notebook)
+//                            }else{
+//                                // 本来=0的，点击后星级至少为1
+//                                wordItem.starLevel = 1
+//                                wordListViewModel.saveToPersistentStoreAndRefresh(.notebook)
+//                            }
+//                        }, label: {
+//                            HStack(spacing:0) {
+//                                Image(systemName: wordItem.starLevel>0 ? "bookmark.fill":"bookmark")
+//                                    .font(.headline)
+//                                VStack {
+//                                    Text("添加到生词本")
+//                                        .font(.subheadline)
+//                                        .fontWeight(.semibold)
+//                                        .padding(1)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 2.0)
+//                                                .stroke())
+//                                }
+//                            }.font(.subheadline)
+//                    })
+//                        Text("")
+//                    }.foregroundColor(Color(.systemRed))
+//                }
+//                ToolbarItem(placement: .bottomBar) {
+//                    HStack {
+//                        Button(action: {
+//
+//                        }, label: {
+//                            HStack(spacing:0) {
+//                                Image(systemName: "doc.append")
+//                                    .font(.headline)
+//                                VStack {
+//                                    Text("单词卡")
+//                                        .font(.subheadline)
+//                                        .fontWeight(.semibold)
+//                                        .padding(1)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 2.0)
+//                                                .stroke())
+//                                }
+//                            }.font(.subheadline)
+//                    })
+//                        Text("")
+//                    }.foregroundColor(Color(.systemBlue))
+//                }
+//            })
             .navigationTitle(wordItem.wordContent ?? "null")
         }
        
@@ -313,6 +353,11 @@ struct WordDetailView_Previews: PreviewProvider {
         
         wordItem.wordNote = ""
         
-        return WordDetailView(wordItem: wordItem, wordItemController: WordItemController(),wordNote:wordItem.wordNote ?? "").environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        return
+            
+            NavigationView {
+                WordDetailView(wordItem: wordItem, wordListViewModel: WordListViewModel(),wordNote:wordItem.wordNote ?? "").environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                    .navigationBarTitleDisplayMode(.inline)
+            }
     }
 }

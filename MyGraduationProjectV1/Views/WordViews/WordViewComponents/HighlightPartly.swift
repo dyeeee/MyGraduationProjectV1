@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HighlightPartlyView: View {
-    @State var fullString: String = "She was also taken aback by his intense jealousy and the imbalance between his tight penny-pinching and extravagant spending."
+    @State var fullString: String = "She was also taken aback by his intense jealousy and the imbalance between his tight penny-pinching and extravagant spending aback aback， aback."
     @State var wordContent:String = "aback"
     
     var body: some View{
@@ -20,7 +20,13 @@ struct HighlightPartlyView: View {
                                 .bold()
                     .foregroundColor(Color(.systemBlue))
                         + Text(" ")
-            } else {
+            }else if $1.dropLast() == self.wordContent{
+                return $0 + Text($1.dropLast())
+                                .bold()
+                    .foregroundColor(Color(.systemBlue))
+                     + Text($1.suffix(1)) +  Text(" ")
+            }
+            else {
                 return $0 + Text($1) + Text(" ")
             }
             
