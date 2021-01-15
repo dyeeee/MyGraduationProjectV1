@@ -34,21 +34,21 @@ struct WordListView: View {
     var body: some View {
         //        NavigationView{
         List{
-            if(dataType == .searchResult){
-                Section{
-                    HStack {
-                        TextField("Search", text: $searchText)
-                            .onChange(of: searchText, perform: { value in
-                                self.wordListViewModel.searchItems(begins: self.searchText)
-                            })
-                        Button(action: {
+            //            if(dataType == .searchResult){
+            Section{
+                HStack {
+                    TextField("Search", text: $searchText)
+                        .onChange(of: searchText, perform: { value in
                             self.wordListViewModel.searchItems(begins: self.searchText)
-                        }, label: {
-                            Image(systemName:"magnifyingglass")
                         })
-                    }
+                    Button(action: {
+                        self.wordListViewModel.searchItems(begins: self.searchText)
+                    }, label: {
+                        Image(systemName:"magnifyingglass")
+                    })
                 }
             }
+            //            }
             
             Section(header: Text("\(headerText(self.dataType))")) {
                 ForEach(self.wordListViewModel.getItems(self.dataType),id:\.self){
@@ -80,19 +80,20 @@ struct WordListView: View {
                 ForEach(self.wordListViewModel.getItems(.history),id:\.self){
                     item in
                     NavigationLink(
-                        destination: WordDetailView(wordItem:item,wordListViewModel:wordListViewModel,wordNote: item.wordNote ?? "nullTag")
-                            .onAppear(perform: {
-                                item.latestSearchDate = Date()
-                                item.historyCount = item.historyCount + 1
-                                self.wordListViewModel.saveToPersistentStore()
-                                self.wordListViewModel.getHistoryItems()
-                            })
+                        destination:
+                            WordDetailView(wordItem:item,wordListViewModel:wordListViewModel,wordNote: item.wordNote ?? "nullTag")
+                                                    .onAppear(perform: {
+                                                        item.latestSearchDate = Date()
+                                                        item.historyCount = item.historyCount + 1
+                                                        self.wordListViewModel.saveToPersistentStore()
+                                                        self.wordListViewModel.getHistoryItems()
+                                                    })
                     )
                     {
                         VStack(alignment:.leading){
                             Text(item.wordContent ?? "noContent")
                                 .font(.title3)
-                            
+
                             Text(self.dealTrans(item.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
                                 .font(.footnote)
                                 .foregroundColor(Color(.systemGray))
@@ -100,9 +101,8 @@ struct WordListView: View {
                         }
                     }
                 }
-            }.onAppear(perform: {
-                self.wordListViewModel.getHistoryItems()
-            })
+            }
+
         }
         .listStyle(InsetGroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)

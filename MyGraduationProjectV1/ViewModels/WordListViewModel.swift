@@ -28,6 +28,7 @@ class WordListViewModel: ObservableObject{
     
     init() {
         getAllItems()
+        getHistoryItems()
         getGroupedItems()
     }
     
@@ -51,7 +52,7 @@ class WordListViewModel: ObservableObject{
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
         let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
         
-        fetchRequest.fetchLimit = 200
+        fetchRequest.fetchLimit = 50
         //fetchRequest.predicate = pre
         fetchRequest.sortDescriptors = [sort]
         
@@ -69,11 +70,11 @@ class WordListViewModel: ObservableObject{
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
         let starLevelFilter = "0"
         let pre =  NSPredicate(format: "starLevel > %@", starLevelFilter)
-        let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        //let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
         
         fetchRequest.fetchLimit = 50
         fetchRequest.predicate = pre
-        fetchRequest.sortDescriptors = [sort]
+        //fetchRequest.sortDescriptors = [sort]
         let viewContext = PersistenceController.shared.container.viewContext
             //获取所有的Item
         
@@ -94,7 +95,7 @@ class WordListViewModel: ObservableObject{
         let groupedByABC = Dictionary(grouping: list)
         { (element: WordItem)  in
             element.wordContent!.prefix(1).uppercased()
-        }.values.sorted(){ $0[0].wordContent!.prefix(1) < $1[0].wordContent!.prefix(1) }
+        }.values.sorted(){ $0[0].wordContent!.prefix(1).uppercased() < $1[0].wordContent!.prefix(1).uppercased() }
         
         self.groupedStarLevelList = groupedByStarLevel
         self.groupedABCList = groupedByABC

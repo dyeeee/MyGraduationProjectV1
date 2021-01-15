@@ -11,24 +11,16 @@ struct WordSearchView: View {
     @ObservedObject var wordListViewModel: WordListViewModel
     @State private var searchText = ""
     
-    func showHistory(_ wordList: [WordItem]) -> Bool {
-        if wordList.count == 0 {
-            return true
-        }
-        else
-        {
-            return false
-        }
-    }
-    
     var body: some View {
         NavigationView{
             
             
             
-            ZStack {
+            
+            VStack {
                 WordListView(wordListViewModel: self.wordListViewModel,dataType: .searchResult)
-            } .listStyle(InsetGroupedListStyle())
+                    
+                }.listStyle(InsetGroupedListStyle())
             .navigationTitle("Word List")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { // <2>

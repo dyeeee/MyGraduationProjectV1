@@ -35,6 +35,7 @@ struct HomeTabView: View {
                 .tag(TabSelection.page3)
             
             WordSearchView(wordListViewModel: wordListViewModel)
+            //    Text("4")
                 .tabItem {
                     Image(systemName: "character.book.closed.fill")
                     Text("Dictionary")

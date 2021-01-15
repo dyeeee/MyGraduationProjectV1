@@ -138,7 +138,7 @@ struct NotebookListView: View {
                                     char in
                                     Button(action: {
                                         withAnimation{
-                                            reader.scrollTo(Substring(char))
+                                            reader.scrollTo(char.uppercased())
                                         }
                                     }, label: {
                                         FilterLabel(text:char)
@@ -180,7 +180,7 @@ struct NotebookListView: View {
                                                 //.frame(height: 30)
                                                 .padding([.leading],-5)
                                             }
-                                        }.id((section[0].wordContent!.prefix(1)))
+                                        }.id((section[0].wordContent!.prefix(1).uppercased()))
                                     }
                                 }
                             }
@@ -212,10 +212,10 @@ struct NotebookListView: View {
                 }
             }
         }
-        //        .onAppear(perform: {
-        //                self.wordListViewModel.getNotebookItems()
-        //                self.wordListViewModel.getGroupedItems()
-        //            })
+//                .onAppear(perform: {
+//                        //self.wordListViewModel.getNotebookItems()
+//                        self.wordListViewModel.getGroupedItems()
+//                    })
     }
     
     func dealTrans(_ rawTrans:String) -> String {
