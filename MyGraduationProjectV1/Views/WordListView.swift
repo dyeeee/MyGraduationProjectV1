@@ -11,6 +11,7 @@ import SwiftUI
 enum WordListType {
     case searchResult
     case notebook
+    case history
     case all
 }
 
@@ -20,9 +21,12 @@ struct WordListView: View {
     @State private var searchText = ""
     @State var dataType: WordListType = .all
     
+    
     func headerText(_ dataType:WordListType) -> String {
         if self.dataType == .searchResult {
             return "Result"
+        }else if self.dataType == .history {
+            return "History"
         }else
         {return "test"}
     }
@@ -45,11 +49,20 @@ struct WordListView: View {
                     }
                 }
             }
+            
             Section(header: Text("\(headerText(self.dataType))")) {
                 ForEach(self.wordListViewModel.getItems(self.dataType),id:\.self){
                     item in
                     NavigationLink(
-                        destination: WordDetailView(wordItem:item,wordListViewModel:wordListViewModel,wordNote: item.wordNote ?? "nullTag")){
+                        destination: WordDetailView(wordItem:item,wordListViewModel:wordListViewModel,wordNote: item.wordNote ?? "nullTag")
+                            .onAppear(perform: {
+                                item.latestSearchDate = Date()
+                                item.historyCount = item.historyCount + 1
+                                self.wordListViewModel.saveToPersistentStore()
+                                self.wordListViewModel.getHistoryItems()
+                            })
+                    )
+                    {
                         VStack(alignment:.leading){
                             Text(item.wordContent ?? "noContent")
                                 .font(.title3)
@@ -58,48 +71,54 @@ struct WordListView: View {
                                 .font(.footnote)
                                 .foregroundColor(Color(.systemGray))
                                 .lineLimit(1)
-                            //                            Text(item.translation?.replacingOccurrences(of: "\\n", with: "; ") ?? "noTranslation")
-                            //                                .font(.subheadline)
-                            //                                .foregroundColor(.gray)
-                            //                                .lineLimit(1)
-                            
-                        }}
+                        }
+                    }
                 }
             }
+            
+            Section(header: Text("History")) {
+                ForEach(self.wordListViewModel.getItems(.history),id:\.self){
+                    item in
+                    NavigationLink(
+                        destination: WordDetailView(wordItem:item,wordListViewModel:wordListViewModel,wordNote: item.wordNote ?? "nullTag")
+                            .onAppear(perform: {
+                                item.latestSearchDate = Date()
+                                item.historyCount = item.historyCount + 1
+                                self.wordListViewModel.saveToPersistentStore()
+                                self.wordListViewModel.getHistoryItems()
+                            })
+                    )
+                    {
+                        VStack(alignment:.leading){
+                            Text(item.wordContent ?? "noContent")
+                                .font(.title3)
+                            
+                            Text(self.dealTrans(item.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
+                                .font(.footnote)
+                                .foregroundColor(Color(.systemGray))
+                                .lineLimit(1)
+                        }
+                    }
+                }
+            }.onAppear(perform: {
+                self.wordListViewModel.getHistoryItems()
+            })
         }
         .listStyle(InsetGroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        //            .navigationTitle("Word List")
         .navigationBarTitleDisplayMode(.inline)
-        //            .toolbar { // <2>
-        //                ToolbarItem(placement: .navigationBarLeading) { // <3>
-        //                    Button {
-        //                        self.wordItemController.deleteAll()
-        //                    } label: {
-        //                        Text("DeleteAll")
-        //                    }
-        //
-        //                }
-        //                ToolbarItem(placement: .navigationBarTrailing) {
-        //                    Menu{
-        //                        Button(action: {
-        //                            self.wordItemController.createTestItem()
-        //                        }) {
-        //                            Label("Create Test", systemImage: "plus.circle")
-        //                        }
-        //                        Button(action: {
-        //                            self.wordItemController.preloadFromCSV()
-        //                        }) {
-        //                            Label("Preload", systemImage: "text.badge.plus")
-        //                        }
-        //                    } label: {
-        //                        Image(systemName: "ellipsis.circle")
-        //                    }
-        //                }
-        //            }
-        
-        //        }
     }
+    
+    func showHistory(_ wordList: [WordItem]) -> Bool {
+        if wordList.count == 0 {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+    
     
     func dealTrans(_ rawTrans:String) -> String {
         let pattern1 = "^(vt|n|a|adj|adv|v|pron|prep|num|art|conj|vi|interj|r)(\\.| )"

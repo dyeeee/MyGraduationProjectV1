@@ -13,7 +13,8 @@ import SwiftUI
 class WordListViewModel: ObservableObject{
     @Published var itemList:[WordItem] = []
     @Published var searchResultList:[WordItem] = []
-    @Published var notebookList:[WordItem] = []
+    
+    @Published var searchHistoryList:[WordItem] = []
     
     @Published var groupedStarLevelList:[[WordItem]] = []
     @Published var groupedABCList:[[WordItem]] = []
@@ -37,19 +38,18 @@ class WordListViewModel: ObservableObject{
         else if dataType == .searchResult {
             return self.searchResultList
         }
-        else if dataType == .notebook{
-            //getNotebookItems()
-            return self.notebookList
+        else if dataType == .history{
+            return self.searchHistoryList
         }
         else{
             return self.itemList
         }
     }
     
+    //获取所有单词
     func getAllItems() {
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
-        let sort = NSSortDescriptor(key: "wordContent", ascending: true)
-        
+        let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
         
         fetchRequest.fetchLimit = 200
         //fetchRequest.predicate = pre
@@ -64,32 +64,16 @@ class WordListViewModel: ObservableObject{
         }
     }
     
-    func getNotebookItems() {
-        let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
-        let sort = NSSortDescriptor(key: "wordContent", ascending: true)
-        
-        let starLevelFilter = "0"
-        let pre =  NSPredicate(format: "starLevel > %@", starLevelFilter)
-        
-        fetchRequest.fetchLimit = 20
-        fetchRequest.predicate = pre
-        fetchRequest.sortDescriptors = [sort]
-        
-        let viewContext = PersistenceController.shared.container.viewContext
-        do {
-            //获取所有的Item
-            notebookList = try viewContext.fetch(fetchRequest)
-        } catch {
-            NSLog("Error fetching tasks: \(error)")
-        }
-    }
-    
+    //获取按星级/首字母分组的列表
     func getGroupedItems(_ by:String = "starLevel") {
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
         let starLevelFilter = "0"
         let pre =  NSPredicate(format: "starLevel > %@", starLevelFilter)
+        let sort = NSSortDescriptor(key: "wordContent", ascending: true,selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        
         fetchRequest.fetchLimit = 50
         fetchRequest.predicate = pre
+        fetchRequest.sortDescriptors = [sort]
         let viewContext = PersistenceController.shared.container.viewContext
             //获取所有的Item
         
@@ -110,11 +94,53 @@ class WordListViewModel: ObservableObject{
         let groupedByABC = Dictionary(grouping: list)
         { (element: WordItem)  in
             element.wordContent!.prefix(1).uppercased()
-        }.values.sorted(){ $0[0].wordContent!.prefix(1) > $1[0].wordContent!.prefix(1) }
+        }.values.sorted(){ $0[0].wordContent!.prefix(1) < $1[0].wordContent!.prefix(1) }
         
         self.groupedStarLevelList = groupedByStarLevel
         self.groupedABCList = groupedByABC
     }
+    
+    //获取历史记录的单词
+    func getHistoryItems() {
+        let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
+        let sort = NSSortDescriptor(key: "latestSearchDate", ascending: false,selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        let pre =  NSPredicate(format: "historyCount > 0")
+        fetchRequest.fetchLimit = 20
+        fetchRequest.predicate = pre
+        fetchRequest.sortDescriptors = [sort]
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+        do {
+            //获取所有的Item
+            self.searchHistoryList = try viewContext.fetch(fetchRequest)
+        } catch {
+            NSLog("Error fetching tasks: \(error)")
+        }
+    }
+    
+    //清除历史记录
+    func deleteAllHistory() {
+        let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
+        let pre =  NSPredicate(format: "historyCount > 0")
+        fetchRequest.predicate = pre
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+        var historyWord:[WordItem] = []
+        do {
+            //获取所有的Item
+            historyWord = try viewContext.fetch(fetchRequest)
+        } catch {
+            NSLog("Error fetching tasks: \(error)")
+        }
+        
+        for item in historyWord {
+            item.historyCount = 0
+        }
+        
+        self.getHistoryItems()
+
+    }
+    
     
     //查询
     func searchItems(begins:String) {
@@ -177,6 +203,7 @@ class WordListViewModel: ObservableObject{
                 word.exampleSentences = csvRows[i][12]
                 word.wordNote = ""
                 word.starLevel = 0
+                word.historyCount = 0
 
             }
             do {
@@ -277,13 +304,13 @@ class WordListViewModel: ObservableObject{
             try viewContext.save()
             getAllItems()
             if listName == .item {
-                getAllItems()
+                self.getAllItems()
             }else if listName == .notebook{
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                     self.getGroupedItems()
                 }
             }else{
-                getAllItems()
+                self.getAllItems()
             }
             
             print("完成保存并重新给对应数据列表赋值")

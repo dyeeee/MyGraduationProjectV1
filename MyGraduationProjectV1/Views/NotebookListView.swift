@@ -200,6 +200,16 @@ struct NotebookListView: View {
                 .navigationTitle("Notebook")
                 .background(Color(.systemGray6))
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) { // <3>
+                        Button {
+                            self.wordListViewModel.saveToPersistentStoreAndRefresh(.notebook)
+                        } label: {
+                            Image(systemName:"arrow.triangle.2.circlepath")
+                        }
+                        
+                    }
+                }
             }
         }
         //        .onAppear(perform: {

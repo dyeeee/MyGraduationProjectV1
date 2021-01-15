@@ -9,8 +9,8 @@
         <attribute name="definition" optional="YES" attributeType="String"/>
         <attribute name="exampleSentences" optional="YES" attributeType="String"/>
         <attribute name="frqLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="otherAttr2" optional="YES" attributeType="String"/>
-        <attribute name="otherAttr3" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="historyCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="latestSearchDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="oxfordLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="phonetic_EN" optional="YES" attributeType="String"/>
         <attribute name="phonetic_US" optional="YES" attributeType="String"/>
@@ -23,7 +23,7 @@
         <attribute name="wordTags" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Item" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="WordItem" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Item" positionX="0" positionY="0" width="128" height="44"/>
+        <element name="WordItem" positionX="0" positionY="0" width="128" height="284"/>
     </elements>
 </model>

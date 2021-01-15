@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct WordExampleSentencesView: View {
-    @State var wordContent:String = "aback"
-    @State var wordExampleSentences:String = "That's an interesting idea,  I said, taken aback and trying to hide it.<br>您这观点倒挺有意思，我试图掩饰自己的惊讶。<br>She was also taken aback by his intense jealousy and the imbalance between his tight penny-pinching and extravagant spending.<br>她也感到吃惊，他强烈的嫉妒和不平衡之间的紧张节俭和奢侈消费。<br>At last, however, she fell right into the wind's eye, was taken dead aback, and stood there a while helpless, with her sails shivering.<br>可是，最终它却转向风吹来的方向，转过船头处于逆风状态，无助地停泊在那儿，船帆不住地颤抖。<br>I was a little taken aback at how much the Shanghainese staff failed to know about the art of cicada maintenance.<br>身为上海人的员工们竟然不懂得养知了的艺术，这让我多少有些惊讶。<br>Lombard was a good deal taken aback, but in his surprise he did not forget that this was the young lady who had refused him that afternoon.<br>伦巴第先生被吓了一跳，但他吃惊得发现自己还记着今天下午她拒绝了他。<br>She barely knows him, so when he gave her that lovely purse, she was really taken aback.<br>她跟他一点儿都不熟，所以当他送给她那个好看的皮夹时，她非常吃惊。<br>The singer was taken aback by the pirated editions of his songs on the market, and he vowed not to let the thiefs off.<br>Although the guy knew of her feelings for him, he was still taken aback and had never expected her to react that way.<br>尽管小伙子知道她对自己的感情，他还是大吃一惊，完全没有想到她会那样｡<br>If I'm honest, I'm a little taken aback how you all but ignore me for two years then email me only when you need something.<br>坦白说，两年来你直接忽视我，现在有需要才主动联系的行为让我有点讶异。<br>She must have been a little too taken aback to reply as I can't seem to recall what she had to say to that.<br>她一定是花了很长时间才反应过来怎样回答我，因为我记不起她当时是怎么说的了。<br>"
+    @State var wordContent:String = "AA"
+    @State var wordExampleSentences:String = "After the encirclement of the German 9th Flak Division at Stalingrad it was the only Axis AA defence unit in the area.<br>在德国第9高炮师陷入斯大林格勒的包围圈后，罗马尼亚防空部队成为轴心国在该地区唯一的防空部队了。<br>Oh, and I should also mention that this mouse is said to last around nine months on two AA batteries.<br>噢，我应该还告诉你，这个鼠标用两节AA电池可以利用差不多九个月。<br>Hammering on this topic reminds me how I once sent a patient to AA who told me that those meetings ruined him as an alcoholic.<br>谈这个话题时，我想起了我送一个病人去匿名戒酒者协会时，他说这个聚会差点把他当酗酒者给毁了。"
     var maxLine = 3
     
     
     
     func countSentences(str:String) -> Int {
-        var sentenceList = str.components(separatedBy: "<br>")
-        sentenceList.removeLast()
+        let sentenceList = str.components(separatedBy: "<br>")
+        //sentenceList.removeLast()
         if sentenceList.count/2 < self.maxLine {
             return sentenceList.count/2
         }else

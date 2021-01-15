@@ -11,77 +11,52 @@ struct WordSearchView: View {
     @ObservedObject var wordListViewModel: WordListViewModel
     @State private var searchText = ""
     
+    func showHistory(_ wordList: [WordItem]) -> Bool {
+        if wordList.count == 0 {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+    
     var body: some View {
         NavigationView{
-            //能把list换成View吗？
-            //            List{
-            //                Section(){
-            //                    HStack {
-            //                        TextField("Search", text: $searchText)
-            //                            .onChange(of: searchText, perform: { value in
-            //                                self.wordListViewModel.searchItems(begins: self.searchText)
-            //                            })
-            //                        Button(action: {
-            //                            self.wordListViewModel.searchItems(begins: self.searchText)
-            //                        }, label: {
-            //                            Image(systemName:"magnifyingglass")
-            //                        })
-            //                    }
-            //                }
-            //
-            //                Section(header: Text("Result")) {
-            //                    ForEach(self.wordListViewModel.itemList,id:\.self){
-            //                        item in
-            //                        NavigationLink(
-            //                            destination: WordDetailView(wordItem:item,wordListViewModel:wordListViewModel,wordNote: item.wordNote ?? "nullTag")){
-            //                        VStack(alignment:.leading){
-            //                            Text(item.wordContent ?? "noContent")
-            //                                .font(.title3)
-            //
-            //                            Text(self.dealTrans(item.translation ?? "noTranslation").replacingOccurrences(of: "\n", with: "; "))
-            //                                .font(.subheadline)
-            //                                .foregroundColor(.gray)
-            //                                .lineLimit(1)
-            ////                            Text(item.translation?.replacingOccurrences(of: "\\n", with: "; ") ?? "noTranslation")
-            ////                                .font(.subheadline)
-            ////                                .foregroundColor(.gray)
-            ////                                .lineLimit(1)
-            //
-            //                        }}
-            //                    }
-            //                }
-            //            }
-            WordListView(wordListViewModel: self.wordListViewModel,dataType: .searchResult)
-                .listStyle(InsetGroupedListStyle())
-                .environment(\.horizontalSizeClass, .regular)
-                .navigationTitle("Word List")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar { // <2>
-                    ToolbarItem(placement: .navigationBarLeading) { // <3>
-                        Button {
-                            self.wordListViewModel.deleteAll()
-                        } label: {
-                            Text("DeleteAll")
-                        }
-                        
+            
+            
+            
+            ZStack {
+                WordListView(wordListViewModel: self.wordListViewModel,dataType: .searchResult)
+            } .listStyle(InsetGroupedListStyle())
+            .navigationTitle("Word List")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarLeading) { // <3>
+                    Button {
+                        self.wordListViewModel.deleteAll()
+                    } label: {
+                        Text("DeleteAll")
                     }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu{
-                            Button(action: {
-                                self.wordListViewModel.createTestItem()
-                            }) {
-                                Label("Create Test", systemImage: "plus.circle")
-                            }
-                            Button(action: {
-                                self.wordListViewModel.preloadFromCSV()
-                            }) {
-                                Label("Preload", systemImage: "text.badge.plus")
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
+                    
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu{
+                        Button(action: {
+                            self.wordListViewModel.createTestItem()
+                        }) {
+                            Label("Create Test", systemImage: "plus.circle")
                         }
+                        Button(action: {
+                            self.wordListViewModel.preloadFromCSV()
+                        }) {
+                            Label("Preload", systemImage: "text.badge.plus")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
                     }
                 }
+            }
             
         }
     }

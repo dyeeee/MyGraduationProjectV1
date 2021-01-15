@@ -42,10 +42,14 @@ struct ShowAllWordsView: View {
                             }) {
                                 Label("PreloadBig", systemImage: "text.badge.plus")
                             }
+                            Button(action: {
+                                self.wordListViewModel.deleteAllHistory()
+                            }) {
+                                Label("删除历史记录", systemImage: "trash")
+                            }
                         } label: {
                             VStack {
                                 Image(systemName: "ellipsis.circle")
-                                    .font(.title)
                             }
                         }
                     }
