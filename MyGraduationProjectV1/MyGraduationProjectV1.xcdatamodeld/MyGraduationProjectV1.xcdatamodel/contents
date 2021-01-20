@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DayContentItem" representedClassName="DayContentItem" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateString" optional="YES" attributeType="String"/>
+        <attribute name="detail" optional="YES" attributeType="String"/>
+        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="monthString" optional="YES" attributeType="String"/>
+        <attribute name="stats" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="LearningWordItem" representedClassName="LearningWordItem" syncable="YES">
+        <attribute name="nextReviewDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextReviewDateString" optional="YES" attributeType="String"/>
+        <attribute name="reviewTimes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
+        <attribute name="wordContent" optional="YES" attributeType="String"/>
+        <attribute name="wordID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="WordItem" representedClassName="WordItem" syncable="YES">
         <attribute name="bncLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -18,12 +34,14 @@
         <attribute name="translation" optional="YES" attributeType="String"/>
         <attribute name="wordContent" optional="YES" attributeType="String"/>
         <attribute name="wordExchanges" optional="YES" attributeType="String"/>
-        <attribute name="wordID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="wordID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="wordNote" optional="YES" attributeType="String"/>
         <attribute name="wordTags" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Item" positionX="0" positionY="0" width="128" height="44"/>
-        <element name="WordItem" positionX="0" positionY="0" width="128" height="284"/>
+        <element name="DayContentItem" positionX="0" positionY="126" width="128" height="119"/>
+        <element name="Item" positionX="-11.2001953125" positionY="46.7149658203125" width="128" height="44"/>
+        <element name="LearningWordItem" positionX="-207" positionY="171" width="128" height="133"/>
+        <element name="WordItem" positionX="-407.1365966796875" positionY="46.14910888671875" width="128" height="298"/>
     </elements>
 </model>

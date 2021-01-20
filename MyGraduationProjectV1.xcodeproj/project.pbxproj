@@ -7,8 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D04B705C25AAF5FE004B644D /* WordItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B705A25AAF5FE004B644D /* WordItem+CoreDataClass.swift */; };
-		D04B705D25AAF5FE004B644D /* WordItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B705B25AAF5FE004B644D /* WordItem+CoreDataProperties.swift */; };
+		D04B639C25B532B8003A8A34 /* DayContentItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B639A25B532B8003A8A34 /* DayContentItem+CoreDataClass.swift */; };
+		D04B639D25B532B8003A8A34 /* DayContentItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B639B25B532B8003A8A34 /* DayContentItem+CoreDataProperties.swift */; };
+		D04B63A025B535D6003A8A34 /* DayContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B639F25B535D6003A8A34 /* DayContentViewModel.swift */; };
+		D04B63A625B535EE003A8A34 /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63A325B535EE003A8A34 /* GridStack.swift */; };
+		D04B63A725B535EE003A8A34 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63A425B535EE003A8A34 /* Helper.swift */; };
+		D04B63A825B535EE003A8A34 /* ScrollViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63A525B535EE003A8A34 /* ScrollViewTest.swift */; };
+		D04B63AF25B53602003A8A34 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63AC25B53602003A8A34 /* Day.swift */; };
+		D04B63B025B53602003A8A34 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63AD25B53602003A8A34 /* Month.swift */; };
+		D04B63B125B53602003A8A34 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63AE25B53602003A8A34 /* Colors.swift */; };
+		D04B63B625B5362B003A8A34 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63B525B5362B003A8A34 /* MonthView.swift */; };
+		D04B63B925B5362F003A8A34 /* DayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63B825B5362F003A8A34 /* DayCellView.swift */; };
+		D04B63BC25B53633003A8A34 /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63BB25B53633003A8A34 /* WeekdaysView.swift */; };
+		D04B63BF25B5363A003A8A34 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63BE25B5363A003A8A34 /* CalendarView.swift */; };
 		D04B706125AAF662004B644D /* CSVTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B706025AAF662004B644D /* CSVTools.swift */; };
 		D04B706425AAF668004B644D /* RegexTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B706325AAF668004B644D /* RegexTools.swift */; };
 		D04B706725AAF66D004B644D /* SelectableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B706625AAF66D004B644D /* SelectableText.swift */; };
@@ -37,6 +48,9 @@
 		D09DE1C9259C28AF006DAB60 /* MyProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09DE1C8259C28AF006DAB60 /* MyProgressView.swift */; };
 		D09DE1D1259C84D4006DAB60 /* ProgressTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09DE1D0259C84D4006DAB60 /* ProgressTestView.swift */; };
 		D09DE1D5259CA592006DAB60 /* ProgressBarViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09DE1D4259CA592006DAB60 /* ProgressBarViews.swift */; };
+		D09E47A725B55C47002A775E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E47A625B55C47002A775E /* HomeView.swift */; };
+		D09E47AB25B5D9B4002A775E /* HistoryCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E47AA25B5D9B4002A775E /* HistoryCalendarView.swift */; };
+		D09E47B025B70157002A775E /* LearnStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E47AF25B70157002A775E /* LearnStartView.swift */; };
 		D0AD9EA12598B2FA00148404 /* MyGraduationProjectV1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AD9EA02598B2FA00148404 /* MyGraduationProjectV1App.swift */; };
 		D0AD9EA32598B2FA00148404 /* CoreDataDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AD9EA22598B2FA00148404 /* CoreDataDemo.swift */; };
 		D0AD9EA52598B2FB00148404 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0AD9EA42598B2FB00148404 /* Assets.xcassets */; };
@@ -44,12 +58,26 @@
 		D0AD9EAA2598B2FB00148404 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AD9EA92598B2FB00148404 /* Persistence.swift */; };
 		D0AD9EAD2598B2FB00148404 /* MyGraduationProjectV1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0AD9EAB2598B2FB00148404 /* MyGraduationProjectV1.xcdatamodeld */; };
 		D0AD9EB72598B35800148404 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AD9EB62598B35800148404 /* HomeTabView.swift */; };
+		D0B0A22525B7CA8500225C28 /* LearnWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B0A22425B7CA8500225C28 /* LearnWordList.swift */; };
+		D0B0A23025B809CE00225C28 /* WordItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B0A22C25B809CE00225C28 /* WordItem+CoreDataClass.swift */; };
+		D0B0A23125B809CE00225C28 /* WordItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B0A22D25B809CE00225C28 /* WordItem+CoreDataProperties.swift */; };
 		D0FC4F5425B07C090005ACB1 /* LocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FC4F5325B07C090005ACB1 /* LocationTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D04B705A25AAF5FE004B644D /* WordItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D04B705B25AAF5FE004B644D /* WordItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D04B639A25B532B8003A8A34 /* DayContentItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayContentItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D04B639B25B532B8003A8A34 /* DayContentItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayContentItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D04B639F25B535D6003A8A34 /* DayContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayContentViewModel.swift; sourceTree = "<group>"; };
+		D04B63A325B535EE003A8A34 /* GridStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
+		D04B63A425B535EE003A8A34 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D04B63A525B535EE003A8A34 /* ScrollViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewTest.swift; sourceTree = "<group>"; };
+		D04B63AC25B53602003A8A34 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		D04B63AD25B53602003A8A34 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
+		D04B63AE25B53602003A8A34 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D04B63B525B5362B003A8A34 /* MonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		D04B63B825B5362F003A8A34 /* DayCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCellView.swift; sourceTree = "<group>"; };
+		D04B63BB25B53633003A8A34 /* WeekdaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
+		D04B63BE25B5363A003A8A34 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		D04B706025AAF662004B644D /* CSVTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVTools.swift; sourceTree = "<group>"; };
 		D04B706325AAF668004B644D /* RegexTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexTools.swift; sourceTree = "<group>"; };
 		D04B706625AAF66D004B644D /* SelectableText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableText.swift; sourceTree = "<group>"; };
@@ -78,6 +106,9 @@
 		D09DE1C8259C28AF006DAB60 /* MyProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProgressView.swift; sourceTree = "<group>"; };
 		D09DE1D0259C84D4006DAB60 /* ProgressTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTestView.swift; sourceTree = "<group>"; };
 		D09DE1D4259CA592006DAB60 /* ProgressBarViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarViews.swift; sourceTree = "<group>"; };
+		D09E47A625B55C47002A775E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D09E47AA25B5D9B4002A775E /* HistoryCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCalendarView.swift; sourceTree = "<group>"; };
+		D09E47AF25B70157002A775E /* LearnStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnStartView.swift; sourceTree = "<group>"; };
 		D0AD9E9D2598B2FA00148404 /* MyGraduationProjectV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGraduationProjectV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AD9EA02598B2FA00148404 /* MyGraduationProjectV1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGraduationProjectV1App.swift; sourceTree = "<group>"; };
 		D0AD9EA22598B2FA00148404 /* CoreDataDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDemo.swift; sourceTree = "<group>"; };
@@ -87,6 +118,9 @@
 		D0AD9EAC2598B2FB00148404 /* MyGraduationProjectV1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyGraduationProjectV1.xcdatamodel; sourceTree = "<group>"; };
 		D0AD9EAE2598B2FB00148404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0AD9EB62598B35800148404 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		D0B0A22425B7CA8500225C28 /* LearnWordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnWordList.swift; sourceTree = "<group>"; };
+		D0B0A22C25B809CE00225C28 /* WordItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D0B0A22D25B809CE00225C28 /* WordItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D0FC4F5325B07C090005ACB1 /* LocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,10 +138,42 @@
 		D044B950259ADA3C0098A1EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				D09DE1D4259CA592006DAB60 /* ProgressBarViews.swift */,
 				D04B707025AAF7D7004B644D /* WordListViewModel.swift */,
+				D04B639F25B535D6003A8A34 /* DayContentViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D04B63A225B535EE003A8A34 /* MonthCalUtility */ = {
+			isa = PBXGroup;
+			children = (
+				D04B63A325B535EE003A8A34 /* GridStack.swift */,
+				D04B63A425B535EE003A8A34 /* Helper.swift */,
+				D04B63A525B535EE003A8A34 /* ScrollViewTest.swift */,
+			);
+			path = MonthCalUtility;
+			sourceTree = "<group>";
+		};
+		D04B63AB25B53602003A8A34 /* MonthCalModel */ = {
+			isa = PBXGroup;
+			children = (
+				D04B63AC25B53602003A8A34 /* Day.swift */,
+				D04B63AD25B53602003A8A34 /* Month.swift */,
+				D04B63AE25B53602003A8A34 /* Colors.swift */,
+			);
+			path = MonthCalModel;
+			sourceTree = "<group>";
+		};
+		D04B63B425B53620003A8A34 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				D09E47AA25B5D9B4002A775E /* HistoryCalendarView.swift */,
+				D04B63BE25B5363A003A8A34 /* CalendarView.swift */,
+				D04B63B525B5362B003A8A34 /* MonthView.swift */,
+				D04B63B825B5362F003A8A34 /* DayCellView.swift */,
+				D04B63BB25B53633003A8A34 /* WeekdaysView.swift */,
+			);
+			path = CalendarView;
 			sourceTree = "<group>";
 		};
 		D04B705F25AAF656004B644D /* Tools */ = {
@@ -117,6 +183,7 @@
 				D04B706325AAF668004B644D /* RegexTools.swift */,
 				D04B706625AAF66D004B644D /* SelectableText.swift */,
 				D090AEAA25AD8B8D00663FA1 /* HideKeyboard.swift */,
+				D04B63A225B535EE003A8A34 /* MonthCalUtility */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -124,6 +191,7 @@
 		D04B706C25AAF771004B644D /* WordViews */ = {
 			isa = PBXGroup;
 			children = (
+				D04B706D25AAF783004B644D /* WordListView.swift */,
 				D04B706925AAF768004B644D /* WordDetailView.swift */,
 				D04B707625AB0CE3004B644D /* WordViewComponents */,
 			);
@@ -148,6 +216,7 @@
 		D09DE1CF259C354C006DAB60 /* TestFiles */ = {
 			isa = PBXGroup;
 			children = (
+				D09DE1D4259CA592006DAB60 /* ProgressBarViews.swift */,
 				D09CCFA025AEC5BD00A0F5B7 /* ShowAllWordsView.swift */,
 				D04B707C25AB2C03004B644D /* StarLevelView.swift */,
 				D09DE1D0259C84D4006DAB60 /* ProgressTestView.swift */,
@@ -182,8 +251,8 @@
 				D0AD9EA02598B2FA00148404 /* MyGraduationProjectV1App.swift */,
 				D0AD9EB62598B35800148404 /* HomeTabView.swift */,
 				D0AD9EBA2598B3C200148404 /* Models */,
-				D044B950259ADA3C0098A1EC /* ViewModels */,
 				D0AD9EB92598B3B700148404 /* Views */,
+				D044B950259ADA3C0098A1EC /* ViewModels */,
 				D04B705F25AAF656004B644D /* Tools */,
 				D09DE1CF259C354C006DAB60 /* TestFiles */,
 				D0AD9EA42598B2FB00148404 /* Assets.xcassets */,
@@ -209,10 +278,13 @@
 		D0AD9EB92598B3B700148404 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D04B706D25AAF783004B644D /* WordListView.swift */,
-				D09CCF9925AE9A2C00A0F5B7 /* WordSearchView.swift */,
+				D09E47A625B55C47002A775E /* HomeView.swift */,
+				D09E47AF25B70157002A775E /* LearnStartView.swift */,
+				D0B0A22425B7CA8500225C28 /* LearnWordList.swift */,
 				D09CCF9425AE982900A0F5B7 /* NotebookListView.swift */,
+				D09CCF9925AE9A2C00A0F5B7 /* WordSearchView.swift */,
 				D04B706C25AAF771004B644D /* WordViews */,
+				D04B63B425B53620003A8A34 /* CalendarView */,
 				D09DE1C8259C28AF006DAB60 /* MyProgressView.swift */,
 			);
 			path = Views;
@@ -221,8 +293,11 @@
 		D0AD9EBA2598B3C200148404 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D04B705A25AAF5FE004B644D /* WordItem+CoreDataClass.swift */,
-				D04B705B25AAF5FE004B644D /* WordItem+CoreDataProperties.swift */,
+				D04B63AB25B53602003A8A34 /* MonthCalModel */,
+				D0B0A22C25B809CE00225C28 /* WordItem+CoreDataClass.swift */,
+				D0B0A22D25B809CE00225C28 /* WordItem+CoreDataProperties.swift */,
+				D04B639B25B532B8003A8A34 /* DayContentItem+CoreDataProperties.swift */,
+				D04B639A25B532B8003A8A34 /* DayContentItem+CoreDataClass.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,37 +374,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				D090AEA125AC740F00663FA1 /* WordExchangesView.swift in Sources */,
+				D0B0A22525B7CA8500225C28 /* LearnWordList.swift in Sources */,
 				D09CCFA125AEC5BD00A0F5B7 /* ShowAllWordsView.swift in Sources */,
+				D04B63B025B53602003A8A34 /* Month.swift in Sources */,
 				D0AD9EAD2598B2FB00148404 /* MyGraduationProjectV1.xcdatamodeld in Sources */,
+				D0B0A23025B809CE00225C28 /* WordItem+CoreDataClass.swift in Sources */,
+				D0B0A23125B809CE00225C28 /* WordItem+CoreDataProperties.swift in Sources */,
+				D04B63BF25B5363A003A8A34 /* CalendarView.swift in Sources */,
 				D04B706E25AAF783004B644D /* WordListView.swift in Sources */,
 				D09CCF9A25AE9A2C00A0F5B7 /* WordSearchView.swift in Sources */,
 				D04B708525AB5234004B644D /* FrqDetailIntroView.swift in Sources */,
+				D09E47AB25B5D9B4002A775E /* HistoryCalendarView.swift in Sources */,
 				D04B707125AAF7D7004B644D /* WordListViewModel.swift in Sources */,
 				D09DE1D5259CA592006DAB60 /* ProgressBarViews.swift in Sources */,
-				D04B705D25AAF5FE004B644D /* WordItem+CoreDataProperties.swift in Sources */,
-				D04B705C25AAF5FE004B644D /* WordItem+CoreDataClass.swift in Sources */,
+				D04B639D25B532B8003A8A34 /* DayContentItem+CoreDataProperties.swift in Sources */,
+				D04B63B625B5362B003A8A34 /* MonthView.swift in Sources */,
+				D04B63A025B535D6003A8A34 /* DayContentViewModel.swift in Sources */,
 				D090AEAB25AD8B8D00663FA1 /* HideKeyboard.swift in Sources */,
 				D04B707D25AB2C03004B644D /* StarLevelView.swift in Sources */,
+				D04B639C25B532B8003A8A34 /* DayContentItem+CoreDataClass.swift in Sources */,
 				D0AD9EAA2598B2FB00148404 /* Persistence.swift in Sources */,
 				D090AEAE25AD92C600663FA1 /* TextEditorAutoUp.swift in Sources */,
 				D04B707A25AB0EFA004B644D /* WordTagsView.swift in Sources */,
 				D04B706A25AAF769004B644D /* WordDetailView.swift in Sources */,
 				D09CCFB825AEEB8000A0F5B7 /* SlideTab.swift in Sources */,
+				D04B63A625B535EE003A8A34 /* GridStack.swift in Sources */,
 				D090AEA425AC8FA200663FA1 /* WordExampleSentencesView.swift in Sources */,
 				D04B706725AAF66D004B644D /* SelectableText.swift in Sources */,
+				D04B63A725B535EE003A8A34 /* Helper.swift in Sources */,
+				D09E47B025B70157002A775E /* LearnStartView.swift in Sources */,
 				D0AD9EB72598B35800148404 /* HomeTabView.swift in Sources */,
 				D09CCFBE25B00AA500A0F5B7 /* GestureTest.swift in Sources */,
 				D09DE1D1259C84D4006DAB60 /* ProgressTestView.swift in Sources */,
 				D09CCF9525AE982900A0F5B7 /* NotebookListView.swift in Sources */,
 				D04B706425AAF668004B644D /* RegexTools.swift in Sources */,
+				D04B63AF25B53602003A8A34 /* Day.swift in Sources */,
+				D04B63B125B53602003A8A34 /* Colors.swift in Sources */,
 				D09DE1C9259C28AF006DAB60 /* MyProgressView.swift in Sources */,
 				D0AD9EA32598B2FA00148404 /* CoreDataDemo.swift in Sources */,
+				D04B63B925B5362F003A8A34 /* DayCellView.swift in Sources */,
 				D090AEA725ACA5BE00663FA1 /* HighlightPartly.swift in Sources */,
+				D04B63BC25B53633003A8A34 /* WeekdaysView.swift in Sources */,
 				D04B706125AAF662004B644D /* CSVTools.swift in Sources */,
+				D04B63A825B535EE003A8A34 /* ScrollViewTest.swift in Sources */,
 				D0AD9EA12598B2FA00148404 /* MyGraduationProjectV1App.swift in Sources */,
 				D04B707425AB0C16004B644D /* WordContentView.swift in Sources */,
 				D0FC4F5425B07C090005ACB1 /* LocationTest.swift in Sources */,
 				D090AE9D25AC2D2C00663FA1 /* WordTranslationView.swift in Sources */,
+				D09E47A725B55C47002A775E /* HomeView.swift in Sources */,
 				D090AE9A25AC00F900663FA1 /* WordPhoneticView.swift in Sources */,
 				D09CCFBB25B0010200A0F5B7 /* ScrollToTest.swift in Sources */,
 			);

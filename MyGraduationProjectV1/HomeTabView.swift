@@ -9,11 +9,12 @@ import SwiftUI
 
 struct HomeTabView: View {
     @State var selectedTab: TabSelection = .page4
-    @ObservedObject var wordListViewModel = WordListViewModel()
+//    @ObservedObject var wordListViewModel = WordListViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab){
-            Text("1")
+//            HomeView()
+            Text("Learn")
                 .tabItem {
                     Image(systemName: "chart.bar.xaxis")
                     Text("Progress")
@@ -27,22 +28,24 @@ struct HomeTabView: View {
                 }
                 .tag(TabSelection.page2)
             
-            NotebookListView(wordListViewModel: wordListViewModel)
+//            NotebookListView(wordListViewModel: wordListViewModel)
+            Text("Learn")
                 .tabItem {
                     Image(systemName: "book.fill")
                     Text("Note")
                 }
                 .tag(TabSelection.page3)
             
-            WordSearchView(wordListViewModel: wordListViewModel)
-            //    Text("4")
+//            WordSearchView(wordListViewModel: wordListViewModel)
+                Text("4")
                 .tabItem {
                     Image(systemName: "character.book.closed.fill")
                     Text("Dictionary")
                 }
                 .tag(TabSelection.page4)
             
-            ShowAllWordsView(wordListViewModel: wordListViewModel)
+//            ShowAllWordsView(wordListViewModel: wordListViewModel)
+            Text("Learn")
                 .tabItem {
                     Image(systemName: "gearshape.2.fill")
                     Text("Setting")

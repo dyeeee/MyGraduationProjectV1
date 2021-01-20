@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 import SwiftUI
 
-//目前ListViewModel一样，等跨数据需要跨多个页面的时候看怎么处理
 class WordListViewModel: ObservableObject{
     @Published var itemList:[WordItem] = []
     @Published var searchResultList:[WordItem] = []
@@ -143,7 +142,7 @@ class WordListViewModel: ObservableObject{
     }
     
     
-    //查询
+    //查询一组数据
     func searchItems(begins:String) {
         let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
         
@@ -162,8 +161,24 @@ class WordListViewModel: ObservableObject{
              
         } catch {
             NSLog("Error fetching tasks: \(error)")
-
         }
+    }
+    
+    func searchItem(id:Int32) -> WordItem{
+        let fetchRequest: NSFetchRequest<WordItem> = WordItem.fetchRequest()
+        let pre =  NSPredicate(format: "wordID == %@", "\(id)")
+        fetchRequest.predicate = pre
+        let viewContext = PersistenceController.shared.container.viewContext
+        var wordItem:WordItem = WordItem(context: viewContext)
+        
+        do {
+            wordItem = try viewContext.fetch(fetchRequest)[0]
+            return wordItem
+        } catch {
+            NSLog("Error fetching tasks: \(error)")
+        }
+        
+        return wordItem
     }
     
     func createTestItem() {
@@ -190,6 +205,7 @@ class WordListViewModel: ObservableObject{
         container.performBackgroundTask() { (context) in
             for i in 1 ..< (csvRows.count - 1) {  //有标题就从1开始
                 let word = WordItem(context: context)
+                //word.wordID = Int32(csvRows[i][0]) ?? 0
                 word.wordContent = csvRows[i][1]
                 word.phonetic_EN = csvRows[i][2]
                 word.phonetic_US = csvRows[i][3]
